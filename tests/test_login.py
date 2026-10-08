@@ -190,6 +190,13 @@ def test_TC24_direct_login_url(driver):
 
     assert driver.current_url.startswith(BASE_URL)
 
+def test_TC25_username_placeholder(driver):
+    login_page = LoginPage(driver)
+
+    login_page.open(BASE_URL)
+
+    assert login_page.get_username_placeholder() == "Tên đăng nhập"
+
 def test_TC31_login_with_utc_email(driver):
     login_page = LoginPage(driver)
 
