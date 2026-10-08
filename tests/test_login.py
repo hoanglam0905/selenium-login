@@ -100,3 +100,27 @@ def test_TC17_password_is_masked(driver):
     login_page.open(BASE_URL)
 
     assert login_page.get_password_input_type() == "password"
+
+def test_TC18_enter_username(driver):
+    login_page = LoginPage(driver)
+
+    login_page.open(BASE_URL)
+
+    username = "test_user_123"
+    login_page.enter_username(username)
+
+    username_input = driver.find_element(*login_page.USERNAME_INPUT)
+
+    assert username_input.get_attribute("value") == username
+
+def test_TC19_enter_password(driver):
+    login_page = LoginPage(driver)
+
+    login_page.open(BASE_URL)
+
+    password = "test_password_123"
+    login_page.enter_password(password)
+
+    password_input = driver.find_element(*login_page.PASSWORD_INPUT)
+
+    assert password_input.get_attribute("value") == password
