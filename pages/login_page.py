@@ -70,3 +70,9 @@ class LoginPage:
             EC.visibility_of_element_located(self.PASSWORD_INPUT)
     )
         return element.get_attribute("placeholder")
+
+    def get_login_button_text(self):
+        button = self.wait.until(
+            EC.visibility_of_element_located(self.LOGIN_BUTTON)
+    )
+        return button.get_attribute("value")

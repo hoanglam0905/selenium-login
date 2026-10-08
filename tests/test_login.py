@@ -204,6 +204,18 @@ def test_TC26_password_placeholder(driver):
 
     assert login_page.get_password_placeholder() == "Mật khẩu"
 
+def test_TC27_login_button(driver):
+    login_page = LoginPage(driver)
+
+    login_page.open(BASE_URL)
+
+    button = driver.find_element(*login_page.LOGIN_BUTTON)
+
+    assert button.is_displayed()
+    assert button.is_enabled()
+    assert login_page.get_login_button_text() == "Đăng nhập"
+
+    
 def test_TC31_login_with_utc_email(driver):
     login_page = LoginPage(driver)
 
