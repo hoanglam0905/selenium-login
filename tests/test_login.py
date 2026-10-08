@@ -136,3 +136,17 @@ def test_TC20_login_button_clickable(driver):
 
     assert login_button.is_displayed()
     assert login_button.is_enabled()
+
+def test_TC21_submit_login_with_enter(driver):
+    login_page = LoginPage(driver)
+
+    login_page.open(BASE_URL)
+
+    login_page.enter_username("invalid_user_12345")
+    password_input = driver.find_element(*login_page.PASSWORD_INPUT)
+    password_input.send_keys("wrong_password_12345")
+    password_input.send_keys(Keys.ENTER)
+
+    error_message = login_page.get_error_message()
+
+    assert error_message == "Tài khoản hoặc mật khẩu không đúng."
