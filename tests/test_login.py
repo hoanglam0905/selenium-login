@@ -165,6 +165,24 @@ def test_TC22_multiple_login_clicks(driver):
             EC.presence_of_element_located(login_page.LOGIN_BUTTON)
         )
 
+def test_TC23_reload_login_page(driver):
+    login_page = LoginPage(driver)
+
+    login_page.open(BASE_URL)
+
+    driver.refresh()
+
+    username_input = login_page.wait.until(
+        EC.visibility_of_element_located(login_page.USERNAME_INPUT)
+    )
+
+    password_input = login_page.wait.until(
+        EC.visibility_of_element_located(login_page.PASSWORD_INPUT)
+    )
+
+    assert username_input.is_displayed()
+    assert password_input.is_displayed()
+
 def test_TC31_login_with_utc_email(driver):
     login_page = LoginPage(driver)
 
