@@ -151,6 +151,20 @@ def test_TC21_submit_login_with_enter(driver):
 
     assert error_message == "Tài khoản hoặc mật khẩu không đúng."
 
+def test_TC22_multiple_login_clicks(driver):
+    login_page = LoginPage(driver)
+
+    login_page.open(BASE_URL)
+
+    for _ in range(3):
+        login_page.enter_username("invalid_user_12345")
+        login_page.enter_password("wrong_password_12345")
+        login_page.click_login()
+
+        login_page.wait.until(
+            EC.presence_of_element_located(login_page.LOGIN_BUTTON)
+        )
+
 def test_TC31_login_with_utc_email(driver):
     login_page = LoginPage(driver)
 
