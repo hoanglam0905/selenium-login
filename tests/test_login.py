@@ -215,7 +215,34 @@ def test_TC27_login_button(driver):
     assert button.is_enabled()
     assert login_page.get_login_button_text() == "Đăng nhập"
 
-    
+def test_TC28_remember_me_state_change(driver):
+    login_page = LoginPage(driver)
+
+    login_page.open(BASE_URL)
+
+    checkbox = driver.find_element(*login_page.REMEMBER_ME)
+
+    assert checkbox.is_selected() is False
+
+    remember_label = login_page.wait.until(
+        EC.element_to_be_clickable(login_page.REMEMBER_ME_LABEL)
+    )
+
+    remember_label.click()
+
+    checkbox = driver.find_element(*login_page.REMEMBER_ME)
+
+    assert checkbox.is_selected() is True
+
+def test_TC29_remember_me_default_state(driver):
+    login_page = LoginPage(driver)
+
+    login_page.open(BASE_URL)
+
+    checkbox = driver.find_element(*login_page.REMEMBER_ME)
+
+    assert checkbox.is_selected() is False
+
 def test_TC31_login_with_utc_email(driver):
     login_page = LoginPage(driver)
 
