@@ -4,7 +4,7 @@ from selenium import webdriver
 from pages.login_page import LoginPage
 from base.config import BASE_URL, VALID_USERNAME, INVALID_PASSWORD
 from selenium.webdriver.common.keys import Keys
-
+from selenium.webdriver.support import expected_conditions as EC
 
 @pytest.fixture
 def driver():
@@ -124,3 +124,15 @@ def test_TC19_enter_password(driver):
     password_input = driver.find_element(*login_page.PASSWORD_INPUT)
 
     assert password_input.get_attribute("value") == password
+
+def test_TC20_login_button_clickable(driver):
+    login_page = LoginPage(driver)
+
+    login_page.open(BASE_URL)
+
+    login_button = login_page.wait.until(
+        EC.element_to_be_clickable(login_page.LOGIN_BUTTON)
+    )
+
+    assert login_button.is_displayed()
+    assert login_button.is_enabled()
