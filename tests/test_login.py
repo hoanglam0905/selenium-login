@@ -167,3 +167,20 @@ def test_TC31_login_with_utc_email(driver):
     )
 
     assert "accounts.google.com" in driver.current_url
+
+def test_TC32_forgot_password_navigation(driver):
+    login_page = LoginPage(driver)
+
+    login_page.open(BASE_URL)
+
+    forgot_password_link = login_page.wait.until(
+        EC.element_to_be_clickable(login_page.FORGOT_PASSWORD_LINK)
+    )
+
+    forgot_password_link.click()
+
+    login_page.wait.until(
+        lambda d: d.current_url.endswith("/Login/GetPass")
+    )
+
+    assert driver.current_url.endswith("/Login/GetPass")
