@@ -54,3 +54,15 @@ def test_TC3_username_password_empty(driver):
     actual_message = login_page.get_error_message()
 
     assert actual_message == "Bạn chưa nhập tên đăng nhập"
+    
+def test_TC4_invalid_username_password(driver):
+    login_page = LoginPage(driver)
+
+    login_page.open(BASE_URL)
+    login_page.enter_username("invalid_user_12345")
+    login_page.enter_password("wrong_password_12345")
+    login_page.click_login()
+
+    actual_message = login_page.get_error_message()
+
+    assert actual_message == "Tài khoản hoặc mật khẩu không đúng."
