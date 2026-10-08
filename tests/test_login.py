@@ -54,7 +54,7 @@ def test_TC3_username_password_empty(driver):
     actual_message = login_page.get_error_message()
 
     assert actual_message == "Bạn chưa nhập tên đăng nhập"
-    
+
 def test_TC4_invalid_username_password(driver):
     login_page = LoginPage(driver)
 
@@ -66,3 +66,14 @@ def test_TC4_invalid_username_password(driver):
     actual_message = login_page.get_error_message()
 
     assert actual_message == "Tài khoản hoặc mật khẩu không đúng."
+
+def test_TC5_password_is_masked(driver):
+    login_page = LoginPage(driver)
+
+    login_page.open(BASE_URL)
+
+    password_input = driver.find_element(
+        *login_page.PASSWORD_INPUT
+    )
+
+    assert password_input.get_attribute("type") == "password"
