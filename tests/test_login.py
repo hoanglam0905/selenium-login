@@ -183,6 +183,13 @@ def test_TC23_reload_login_page(driver):
     assert username_input.is_displayed()
     assert password_input.is_displayed()
 
+def test_TC24_direct_login_url(driver):
+    login_page = LoginPage(driver)
+
+    login_page.open(BASE_URL)
+
+    assert driver.current_url.startswith(BASE_URL)
+
 def test_TC31_login_with_utc_email(driver):
     login_page = LoginPage(driver)
 
