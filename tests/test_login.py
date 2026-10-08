@@ -2,7 +2,7 @@ import pytest
 from selenium import webdriver
 
 from pages.login_page import LoginPage
-from config import BASE_URL, VALID_USERNAME, INVALID_PASSWORD
+from base.config import BASE_URL, VALID_USERNAME, INVALID_PASSWORD
 from selenium.webdriver.common.keys import Keys
 
 
@@ -93,3 +93,10 @@ def test_TC6_submit_with_enter(driver):
     actual_message = login_page.get_error_message()
 
     assert actual_message == "Bạn chưa nhập tên đăng nhập"
+
+def test_TC17_password_is_masked(driver):
+    login_page = LoginPage(driver)
+
+    login_page.open(BASE_URL)
+
+    assert login_page.get_password_input_type() == "password"

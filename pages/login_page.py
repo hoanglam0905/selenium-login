@@ -44,3 +44,10 @@ class LoginPage:
             EC.visibility_of_element_located(self.ERROR_MESSAGE)
         )
         return error.text
+
+    def get_password_input_type(self):
+        element = self.wait.until(
+        EC.visibility_of_element_located(self.PASSWORD_INPUT)
+        )
+        return element.get_attribute("type")
+    
