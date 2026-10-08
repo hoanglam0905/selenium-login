@@ -150,3 +150,20 @@ def test_TC21_submit_login_with_enter(driver):
     error_message = login_page.get_error_message()
 
     assert error_message == "Tài khoản hoặc mật khẩu không đúng."
+
+def test_TC31_login_with_utc_email(driver):
+    login_page = LoginPage(driver)
+
+    login_page.open(BASE_URL)
+
+    email_login_link = login_page.wait.until(
+        EC.element_to_be_clickable(login_page.EMAIL_LOGIN_LINK)
+    )
+
+    email_login_link.click()
+
+    login_page.wait.until(
+        lambda d: "accounts.google.com" in d.current_url
+    )
+
+    assert "accounts.google.com" in driver.current_url

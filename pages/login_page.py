@@ -11,7 +11,11 @@ class LoginPage:
     REMEMBER_ME = (By.ID, "persistent")
     LOGIN_BUTTON = (By.CSS_SELECTOR, ".submit_login")
     ERROR_MESSAGE = (By.CSS_SELECTOR, "div.error")
-
+    EMAIL_LOGIN_LINK = (
+    By.CSS_SELECTOR,
+    'a.button[href*="accounts.google.com/o/oauth2/auth"]'
+)
+    
     def __init__(self, driver):
         self.driver = driver
         self.wait = WebDriverWait(driver, 10)
