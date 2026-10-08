@@ -65,3 +65,8 @@ class LoginPage:
         )
         return element.get_attribute("placeholder")
     
+    def get_password_placeholder(self):
+        element = self.wait.until(
+            EC.visibility_of_element_located(self.PASSWORD_INPUT)
+    )
+        return element.get_attribute("placeholder")

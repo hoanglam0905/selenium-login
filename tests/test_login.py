@@ -197,6 +197,13 @@ def test_TC25_username_placeholder(driver):
 
     assert login_page.get_username_placeholder() == "Tên đăng nhập"
 
+def test_TC26_password_placeholder(driver):
+    login_page = LoginPage(driver)
+
+    login_page.open(BASE_URL)
+
+    assert login_page.get_password_placeholder() == "Mật khẩu"
+
 def test_TC31_login_with_utc_email(driver):
     login_page = LoginPage(driver)
 
